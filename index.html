@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Foods-recipe__Isoqova</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script
+      src="https://kit.fontawesome.com/1a53a95a32.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="bg-gradient-to-r from-blue-500 to-green-500 max-w-full flex justify-center m-0 dropdown"
+  >
+    <div class="flex flex-col justify-center max-w-full m-0 mb-12" id="body">
+      <div class="bg-orange-50 w-[1200px] mt-16 rounded-2xl h-fit mb-12">
+        <header
+          class="flex w-full rounded-t-2xl justify-between px-10 items-center"
+        >
+          <div>
+            <img class="w-28" src="./images/yummy.png" alt="yummy" />
+          </div>
+          <div class="flex bg-white rounded-3xl pl-8 w-1/2">
+            <input
+              id="input"
+              class="w-full rounded-3xl outline-none placeholder:text-pink-300"
+              type="text"
+              placeholder="Search over 1,000,000 recipes..."
+            />
+            <button
+              id="searchBtn"
+              onclick="getData()"
+              class="flex cursor-pointer gap-4 outline-none bg-gradient-to-bl from-blue-500 to-green-500 rounded-3xl px-12 py-3 items-center text-white transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-105 hover:bg-indigo-500 duration-300 ..."
+            >
+              <i class="text-xl fa-solid fa-magnifying-glass"></i>
+              <span class="uppercase">search</span>
+            </button>
+          </div>
+          <div class="flex items-center">
+            <div
+              class="flex gap-3 items-center hover:bg-[#F2EFEE] py-11 px-5 cursor-pointer"
+              onclick="myFunction()"
+              id="dropbtn"
+            >
+              <i class="text-blue-600 text-xl fa-regular fa-pen-to-square"></i>
+              <p class="uppercase">Add Recipe</p>
+            </div>
+            <div
+              class="flex gap-3 items-center hover:bg-[#F2EFEE] py-11 px-5 cursor-pointer"
+            >
+              <i class="text-blue-600 text-xl fa-regular fa-bookmark"></i>
+              <p class="uppercase">Bookmarks</p>
+            </div>
+          </div>
+        </header>
+        <div class="flex">
+          <div
+            class="bg-slate-300 flex flex-col w-[40%] rounded-l-2xl "
+          >
+            <div
+              id="scrollPart"
+              class="bg-white flex flex-col pt-8 pb-8 overflow-y-scroll h-[800px]"
+            >
+              <img
+                src="./images/loading.gif"
+                id="loading"
+                class="hidden"
+                alt=""
+              />
+            </div>
+            <div class="flex px-7 py-6 h-auto m-0 justify-center items-end " >
+              <div class="flex items-center gap-9 m-0 ">
+                <a href="https://github.com/isoqovaogilshod" target="_blank"
+                  ><i
+                    class="text-3xl fa-brands fa-github text-cyan-700 hover:text-orange-400"
+                  ></i
+                ></a>
+                <a
+                  href="https://www.linkedin.com/in/o%CA%BBg%CA%BBilshod-isoqova-331150275/"
+                  target="_blank"
+                >
+                  <i
+                    class="text-3xl fa-brands fa-linkedin text-cyan-700 hover:text-orange-400"
+                  ></i>
+                </a>
+                <a
+                  href="https://portfolio-isoqova.netlify.app/"
+                  target="_blank"
+                >
+                  <i
+                    class="text-2xl fa-solid fa-user text-cyan-700 hover:text-orange-400"
+                  ></i>
+                </a>
+                <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox" target="_blank">
+                  <i
+                    class="text-2xl fa-solid fa-at text-cyan-700 hover:text-orange-400"
+                  ></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="w-2/3">
+            <div>
+              <div id="bgImg">
+                <img
+                  src="./images/loading.gif"
+                  id="loadingBig"
+                  class="hidden"
+                  alt=""
+                />
+              </div>
+
+              <div class="flex justify-between px-24">
+                <div class="flex items-center gap-16">
+                  <div class="flex gap-3 items-center">
+                    <i class="text-2xl text-blue-600 fa-regular fa-clock"></i>
+                    <span class="font-bold text-gray-600 text-xl" id="time"
+                      >60</span
+                    >
+                    <p class="uppercase text-lg">Minutes</p>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <i class="text-xl text-blue-600 fa-solid fa-user-group"></i>
+                    <span class="font-bold text-gray-600 text-xl" id="num"
+                      >1</span
+                    >
+                    <p class="uppercase text-lg">servings</p>
+                    <div
+                      id="plus"
+                      class="border-solid border-2 flex justify-center border-blue-600 rounded-full px-[6px] hover:border-red-400"
+                    >
+                      <i
+                        class="text-xs text-blue-600 fa-solid fa-plus py-1 hover:text-red-400"
+                      ></i>
+                    </div>
+                    <div
+                      id="minus"
+                      class="border-solid border-2 border-blue-600 rounded-full px-[6px] hover:border-red-400"
+                    >
+                      <i
+                        class="text-xs text-blue-600 fa-solid fa-minus hover:text-red-400"
+                      ></i>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div
+                    class="bg-gradient-to-br cursor-pointer from-blue-600 to-green-500 px-4 py-2 rounded-full transition ease-in-out delay-100 hover:bg-slate-100 -translate-y-1 duration-300"
+                  >
+                    <i
+                      class="text-xl text-white fa-regular fa-bookmark"
+                      id="bookmark1"
+                    ></i>
+                    <i
+                      class="text-xl text-white fa-solid fa-bookmark hidden"
+                      id="bookmark2"
+                    ></i>
+                  </div>
+                </div>
+              </div>
+              <div class="bg-[#F2EFEE] w-full h-auto mt-5 px-28 pb-5">
+                <h2
+                  class="flex text-blue-400 font-semibold justify-center pt-9 text-xl"
+                >
+                  RECIPE INGREDIENTS
+                </h2>
+                <div
+                  id="ingredientPart"
+                  class="grid grid-cols-2 gap-4 justify-center m-0 mt-6 mb-14"
+                ></div>
+              </div>
+
+              <div
+                class="bg-pink-50 flex flex-col justify-center items-center gap-3 rounded-br-2xl h-[250px]"
+              >
+                <h2
+                  class="flex justify-center font-semibold text-blue-600 text-2xl"
+                >
+                  HOW TO COOK IT
+                </h2>
+                <div class="flex flex-row" id="text">
+                  <p
+                    class="text-center max-w-full mt-5 w-[550px] text-zinc-400"
+                  >
+                    This recipe was carefully designed and tested by
+                    <span class="text-slate-400 font-bold">
+                      BBC Good Food.
+                    </span>
+                    Please check out directions at their website.
+                  </p>
+                </div>
+
+                <button
+                  class="bg-gradient-to-br outline-none cursor-pointer from-blue-600 to-green-500 px-8 flex gap-3 items-center py-3 mt-3 text-white rounded-3xl uppercase transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 ..."
+                >
+                  Directions
+                  <i class="fa-solid fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="bg-slate-100 h-[630px] w-[1100px] hidden flex flex-col m-0 justify-center px-16 py-10 pb-14 rounded-2xl absolute z-10 top-[100px] shadow dropdown-content"
+      id="myDropdown"
+    >
+      <div class="flex justify-end pt-5" id="Xmark">
+        <i class="text-3xl text-gray-500 fa-solid fa-xmark"></i>
+      </div>
+      <div class="flex gap-x-40 pb-14">
+        <div class="flex flex-col gap-8">
+          <h3 class="text-[25px] text-gray-700 font-medium">RECIPE DATA</h3>
+          <div class="flex gap-5">
+            <div class="flex flex-col gap-12">
+              <h3>Title</h3>
+              <h3>URL</h3>
+              <h3>Image URL</h3>
+              <h3>Publisher</h3>
+              <h3>Prep time</h3>
+              <h3>Servings</h3>
+            </div>
+            <form
+              action=""
+              class="flex flex-col gap-9 w-[300px] text-[#615551]"
+            >
+              <input
+                type="text"
+                id="title"
+                value="TEST12312"
+                class="border-solid border-2 border-[#DDDDDD] w-full py-1 rounded-lg pl-4"
+              />
+
+              <input
+                type="text"
+                id="title"
+                value="TEST123123"
+                class="border-solid border-2 border-[#DDDDDD] w-full py-1 rounded-lg pl-4 pr-5"
+              />
+
+              <input
+                type="text"
+                id="title"
+                value="TEST123123"
+                class="border-solid border-2 border-[#DDDDDD] w-full py-1 rounded-lg pl-4 pr-5"
+              />
+
+              <input
+                type="text"
+                id="title"
+                value="TEST123123"
+                class="border-solid border-2 border-[#DDDDDD] w-full py-1 rounded-lg pl-4 pr-5"
+              />
+
+              <input
+                type="text"
+                id="title"
+                value="23"
+                class="border-solid border-2 border-[#DDDDDD] w-full py-1 rounded-lg pl-4 pr-5"
+              />
+
+              <input
+                type="text"
+                id="title"
+                value="23"
+                class="border-solid border-2 border-[#DDDDDD] w-full py-1 rounded-lg pl-4 pr-5"
+              />
+            </form>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-9">
+          <h3 class="text-[25px] text-gray-700 font-medium">INGREDIENTS</h3>
+          <div class="flex gap-5">
+            <div class="flex flex-col gap-12 text-[#615551]">
+              <h3>Ingredient 1</h3>
+              <h3>Ingredient 2</h3>
+              <h3>Ingredient 3</h3>
+              <h3>Ingredient 4</h3>
+              <h3>Ingredient 5</h3>
+              <h3>Ingredient 6</h3>
+            </div>
+            <form action="" class="flex flex-col gap-9 w-[300px]">
+              <input
+                type="text"
+                id="title"
+                value="0.5,kg,Rice"
+                class="border-solid border-2 border-[#DDDDDD] w-full py-1 rounded-lg pl-4"
+              />
+
+              <input
+                type="text"
+                id="title"
+                value="1,,Avocado"
+                class="border-solid border-2 border-[#DDDDDD] w-full py-1 rounded-lg pl-4 pr-5"
+              />
+
+              <input
+                type="text"
+                id="title"
+                value=",,salt"
+                class="border-solid border-2 border-[#DDDDDD] w-full py-1 rounded-lg pl-4 pr-5"
+              />
+
+              <input
+                type="text"
+                id="title"
+                placeholder="Format:'Quentity,Unit,Description'"
+                class="border-solid border-2 border-[#DDDDDD] w-full py-1 rounded-lg pl-4 pr-5"
+              />
+
+              <input
+                type="text"
+                id="title"
+                placeholder="Format:'Quentity,Unit,Description'"
+                class="border-solid border-2 border-[#DDDDDD] w-full py-1 rounded-lg pl-4 pr-5"
+              />
+
+              <input
+                type="text"
+                id="title"
+                placeholder="Format:'Quentity,Unit,Description'"
+                class="border-solid border-2 border-[#DDDDDD] w-full py-1 rounded-lg pl-4 pr-5"
+              />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
